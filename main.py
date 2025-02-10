@@ -45,12 +45,18 @@ def main():
         
         for update in updatable:
             update.update(dt) # update sprites in the updateable group
-
+            
         for asteroid in asteroidsgroup:
             # if the player collides with an asteroid, the game ends
             if player.detect_collision(asteroid):
                 print("Game Over!")
                 sys.exit()
+            for shot in shotgroup:
+                # if the shot collides with an asteroid, the asteroid is destroyed
+                if shot.detect_collision(asteroid):
+                    #
+                    pygame.sprite.Sprite.kill(asteroid)
+                    pygame.sprite.Sprite.kill(shot)
 
         for sprite in drawable:
             sprite.draw(screen) # draw sprites in the drawable group
