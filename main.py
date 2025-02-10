@@ -54,8 +54,8 @@ def main():
             for shot in shotgroup:
                 # if the shot collides with an asteroid, the asteroid is destroyed
                 if shot.detect_collision(asteroid):
-                    #
-                    pygame.sprite.Sprite.kill(asteroid)
+                    # kill() removes the sprite from all groups
+                    asteroid.split()
                     pygame.sprite.Sprite.kill(shot)
 
         for sprite in drawable:
