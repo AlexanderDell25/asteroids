@@ -1,9 +1,11 @@
 import pygame
+import sys
 from constants import *
 from player import *
 from circleshape import *
 from asteroid import *
 from asteroidfield import *
+
 
 updatable = pygame.sprite.Group()
 drawable = pygame.sprite.Group()
@@ -38,8 +40,14 @@ def main():
         
         pygame.Surface.fill(screen, (0,0,0))
         
-        
-        updatable.update(dt) # update sprites in the updateable group
+        for update in updatable:
+            update.update(dt) # update sprites in the updateable group
+
+        for asteroid in asteroidsgroup:
+            if player.detect_collision(asteroid):
+                print("Game Over")
+                sys.exit()
+
         for sprite in drawable:
             sprite.draw(screen) # draw sprites in the drawable group
 
