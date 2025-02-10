@@ -44,8 +44,9 @@ def main():
             update.update(dt) # update sprites in the updateable group
 
         for asteroid in asteroidsgroup:
+            # if the player collides with an asteroid, the game ends
             if player.detect_collision(asteroid):
-                print("Game Over")
+                print("Game Over!")
                 sys.exit()
 
         for sprite in drawable:
